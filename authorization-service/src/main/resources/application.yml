@@ -1,0 +1,21 @@
+server:
+  port: 9000
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/doctest
+    username: doctest_user
+    password: doctest_password
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        show_sql: true
+authclient:
+  url: http://localhost:8080
+logging:
+  level:
+    org.springframework.security: TRACE

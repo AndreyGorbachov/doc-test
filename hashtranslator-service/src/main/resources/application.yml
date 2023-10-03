@@ -1,0 +1,34 @@
+server:
+  port: 8080
+authserver:
+  url: http://127.0.0.1:9000
+spring:
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/hashtest
+  security:
+    oauth2:
+      client:
+        registration:
+          auth-client:
+            provider: "auth-client"
+            client-id: "hash-translator-client"
+            client-secret: "secret"
+            client-authentication-method: "client_secret_basic"
+            authorization-grant-type: "authorization_code"
+            scope: "openid"
+            redirect-uri: "{baseUrl}/login/oauth2/code/{registrationId}"
+        provider:
+          auth-client:
+            #issuer-uri: "${auth-server.base-url}"
+            authorization-uri: "${authserver.url}/oauth2/authorize"
+            token-uri: "${authserver.url}/oauth2/token"
+            jwk-set-uri: "${authserver.url}/oauth2/jwks"
+            user-name-attribute: "sub"
+decoder:
+  URL: http://www.md5.in/api.ashx
+  login: andreygorbatschov@gmail.com
+  password: 12345678
+logging:
+  level:
+    org.springframework.security: TRACE
